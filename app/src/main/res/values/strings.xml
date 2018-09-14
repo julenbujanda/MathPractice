@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Pácticas de Matemáticas</string>
+    <string name="result">Resultado</string>
+    <string name="calculate">Calcular</string>
+    <string name="correct">Correcto</string>
+    <string name="incorrect">Incorrecto</string>
+    <string name="remaining">Operaciones restantes:</string>
+</resources>
