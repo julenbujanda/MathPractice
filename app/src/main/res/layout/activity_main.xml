@@ -67,21 +67,49 @@
 
     <TextView
         android:id="@+id/lblRemainingNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="22dp"
         android:layout_marginBottom="166dp"
-        android:layout_marginStart="9dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="22dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/lblRemaining"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_isCorrect" />
+        app:layout_constraintTop_toBottomOf="@+id/lbl_isCorrect"
+        app:layout_constraintVertical_bias="1.0" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+    <LinearLayout
+        android:id="@+id/levels"
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="382dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="116dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblRemaining">
+
+        <Button
+            android:id="@+id/btn_level_1"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/level_1" />
+
+        <Button
+            android:id="@+id/btn_level_2"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/level_2" />
+
+        <Button
+            android:id="@+id/btn_level_3"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/level_3" />
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

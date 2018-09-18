@@ -2,7 +2,7 @@
     <string name="app_name">Matematika Praktikak</string>
     <string name="result">Emaitza</string>
     <string name="calculate">Kalkulatu</string>
-    <string name="correct">Correcto</string>
+    <string name="correct">Zuzena</string>
     <string name="incorrect">Okerra</string>
-    <string name="remaining">Operaciones restantes:</string>
+    <string name="remaining">Gainontzeko operazioak:</string>
 </resources>

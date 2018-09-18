@@ -1,8 +1,12 @@
 <resources>
-    <string name="app_name">Pácticas de Matemáticas</string>
-    <string name="result">Resultado</string>
-    <string name="calculate">Calcular</string>
-    <string name="correct">Correcto</string>
-    <string name="incorrect">Incorrecto</string>
-    <string name="remaining">Operaciones restantes:</string>
+    <string name="app_name">Math Practice</string>
+    <string name="result">Result</string>
+    <string name="calculate">Calculate</string>
+    <string name="correct">Correct</string>
+    <string name="incorrect">Incorrect</string>
+    <string name="remaining">Remaining calculations:</string>
+    <string name="level_1">Level 1</string>
+    <string name="level_2">Level 2</string>
+    <string name="level_3">Level 3</string>
+
 </resources>
