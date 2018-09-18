@@ -11,7 +11,7 @@
         android:layout_width="187dp"
         android:layout_height="68dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="95dp"
+        android:layout_marginTop="104dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,8 +35,8 @@
         android:id="@+id/btn_calculate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="147dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="52dp"
         android:text="@string/calculate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_question" />
@@ -45,8 +45,9 @@
         android:id="@+id/lbl_isCorrect"
         android:layout_width="195dp"
         android:layout_height="62dp"
-        android:layout_marginStart="95dp"
-        android:layout_marginTop="39dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="44dp"
+        android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_calculate" />
@@ -70,46 +71,70 @@
         android:layout_width="70dp"
         android:layout_height="22dp"
         android:layout_marginBottom="166dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="22dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/lblRemaining"
         app:layout_constraintTop_toBottomOf="@+id/lbl_isCorrect"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.619" />
 
     <LinearLayout
         android:id="@+id/levels"
         style="?android:attr/buttonBarStyle"
-        android:layout_width="382dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="116dp"
+        android:layout_width="147dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblRemaining">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/btn_level_1"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/level_1" />
+        <Spinner
+            android:id="@+id/levels_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent" />
 
-        <Button
-            android:id="@+id/btn_level_2"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/level_2" />
-
-        <Button
-            android:id="@+id/btn_level_3"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/level_3" />
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/txt_calculations"
+        android:layout_width="89dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="27dp"
+        android:ems="10"
+        android:hint="@string/calc_n"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/levels"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_set_calcs"
+        android:layout_width="72dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/set"
+        app:layout_constraintStart_toEndOf="@+id/txt_calculations"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lbl_puntuacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/score"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblRemaining" />
+
+    <TextView
+        android:id="@+id/lbl_score"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="420dp"
+        app:layout_constraintStart_toEndOf="@+id/lbl_puntuacion"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

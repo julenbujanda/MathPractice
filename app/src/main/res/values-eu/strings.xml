@@ -5,4 +5,7 @@
     <string name="correct">Zuzena</string>
     <string name="incorrect">Okerra</string>
     <string name="remaining">Gainontzeko operazioak:</string>
+    <string name="level_1">1en maila</string>
+    <string name="level_2">2en maila</string>
+    <string name="level_3">3en maila</string>
 </resources>

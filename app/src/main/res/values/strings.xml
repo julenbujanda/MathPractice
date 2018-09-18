@@ -1,11 +1,15 @@
 <resources>
     <string name="app_name">Math Practice</string>
     <string name="result">Result</string>
-    <string name="calculate">Calculate</string>
+    <string name="calculate">Solve</string>
     <string name="correct">Correct</string>
     <string name="incorrect">Incorrect</string>
     <string name="remaining">Remaining calculations:</string>
     <string name="level_1">Level 1</string>
     <string name="level_2">Level 2</string>
     <string name="level_3">Level 3</string>
+    <string name="calc_n">Calc N.</string>
+    <string name="set">Set</string>
+    <string name="score">Score:</string>
+    <string name="end">The End</string>
 </resources>
