@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         lblIsCorrect = findViewById(R.id.lbl_isCorrect);
         txtResult = findViewById(R.id.txt_result);
         btnCalculate = findViewById(R.id.btn_calculate);
+        btnCalculate.setEnabled(false);
         lblQuestion = findViewById(R.id.lbl_question);
         Spinner levelSpinner = findViewById(R.id.levels_spinner);
         ArrayAdapter<CharSequence> levelsAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.levels_array, android.R.layout.simple_spinner_item);
@@ -134,12 +135,33 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        txtResult.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (txtResult.getText().toString().equals("")) {
+                    btnCalculate.setEnabled(false);
+                } else {
+                    btnCalculate.setEnabled(true);
+                }
+            }
+        });
         btnSetCalcs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 remainingCalculations = Integer.parseInt(txtCalculations.getText().toString());
                 txtCalculations.setText("");
                 lblRemainingCalcs.setText(Integer.toString(remainingCalculations));
+                cerrarTeclado();
             }
         });
 
@@ -171,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void endGame() {
-        lblIsCorrect.setText(R.string.correct);
+        lblIsCorrect.setText(R.string.end);
         btnCalculate.setEnabled(false);
     }
 
