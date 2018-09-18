@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -14,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.shashank.sony.fancytoastlib.FancyToast;
 
@@ -22,19 +20,18 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int correctResult;
+    //Graphical
     private TextView lblQuestion;
-    private EditText txtResult;
     private TextView lblRemainingCalcs;
     private TextView lblScore;
     private TextView lblIsCorrect;
-
+    private EditText txtResult;
     private Button btnCalculate;
 
     private int level;
-
     private int remainingCalculations;
     private int score;
+    private int correctResult;
 
     private int generarNumero() {
         switch (level) {
@@ -148,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (txtResult.getText().toString().equals("")) {
+                if (txtResult.getText().toString().equals("") || remainingCalculations == 0) {
                     btnCalculate.setEnabled(false);
                 } else {
                     btnCalculate.setEnabled(true);
@@ -162,14 +159,12 @@ public class MainActivity extends AppCompatActivity {
                 txtCalculations.setText("");
                 lblRemainingCalcs.setText(Integer.toString(remainingCalculations));
                 cerrarTeclado();
+                if (!txtResult.getText().toString().equals("") && remainingCalculations > 0) {
+                    btnCalculate.setEnabled(true);
+                }
             }
         });
 
-        remainingCalculations = 5;
-        score = 0;
-        lblRemainingCalcs.setText(Integer.toString(remainingCalculations));
-        level = 1;
-        nuevaOperacion();
         btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -190,6 +185,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        level = 1;
+        remainingCalculations = 5;
+        score = 0;
+        updateData();
+        nuevaOperacion();
+
     }
 
     private void endGame() {
