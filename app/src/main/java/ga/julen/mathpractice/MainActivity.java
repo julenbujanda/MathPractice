@@ -31,35 +31,19 @@ public class MainActivity extends AppCompatActivity {
     private int level;
     private int remainingCalculations;
     private int score;
-    private int correctResult;
+    private Operacion operation;
 
-    private int generarNumero() {
-        switch (level) {
-            case 1:
-                return (int) (10 * Math.random());
-            case 2:
-                return (int) (100 * Math.random());
-            case 3:
-                return (int) (100 * Math.random());
-            default:
-                return 0;
-        }
-    }
 
     private void nuevaOperacion() {
         txtResult.setText("");
-        int number1 = generarNumero();
-        int number2;
+        operation = new Operacion(level);
         if (level != 3) {
-            number2 = generarNumero();
-            correctResult = number1 + number2;
-            lblQuestion.setText(number1 + " + " + number2 + " =");
+            lblQuestion.setText(operation.getNum1() + " + " + operation.getNum2() + " =");
         } else {
-            do {
-                number2 = generarNumero();
-            } while (number2 >= number1);
-            correctResult = number1 - number2;
-            lblQuestion.setText(number1 + " - " + number2 + " =");
+            while (operation.getResult() < 0) {
+                operation = new Operacion(level);
+            }
+            lblQuestion.setText(operation.getNum1() + " - " + operation.getNum2() + " =");
         }
 
     }
@@ -170,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 cerrarTeclado();
                 int resultadoUsuario = Integer.parseInt(txtResult.getText().toString());
-                if (resultadoUsuario == correctResult) {
+                if (resultadoUsuario == operation.getResult()) {
                     lblIsCorrect.setText(R.string.correct);
                     remainingCalculations--;
                     score++;
