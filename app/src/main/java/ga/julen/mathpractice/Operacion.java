@@ -7,29 +7,25 @@ public class Operacion {
     private int result;
 
     public Operacion(int level) {
-        int number1 = generarNumero(level);
-        int number2;
-        if (level != 3) {
-            number2 = generarNumero(level);
-            result = number1 + number2;
-        } else {
-            do {
-                number2 = generarNumero(level);
-            } while (number2 >= number1);
-            result = number1 - number2;
+        num1 = generarNumero(level);
+        num2 = generarNumero(level);
+        switch (level) {
+            case 3:
+                result = num1 - num2;
+                break;
+            default:
+                result = num1 + num2;
+                break;
         }
+
     }
 
     private int generarNumero(int level) {
         switch (level) {
             case 1:
                 return (int) (10 * Math.random());
-            case 2:
-                return (int) (100 * Math.random());
-            case 3:
-                return (int) (100 * Math.random());
             default:
-                return 0;
+                return (int) (100 * Math.random());
         }
     }
 
