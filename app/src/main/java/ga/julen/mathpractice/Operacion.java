@@ -1,5 +1,7 @@
 package ga.julen.mathpractice;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Operacion {
 
     private int num1;
@@ -23,9 +25,9 @@ public class Operacion {
     private int generarNumero(int level) {
         switch (level) {
             case 1:
-                return (int) (10 * Math.random());
+                return ThreadLocalRandom.current().nextInt(1, 10);
             default:
-                return (int) (100 * Math.random());
+                return ThreadLocalRandom.current().nextInt(10, 100);
         }
     }
 

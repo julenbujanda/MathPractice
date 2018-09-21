@@ -8,4 +8,8 @@
     <string name="level_1">Nivel 1</string>
     <string name="level_2">Nivel 2</string>
     <string name="level_3">Nivel 3</string>
+    <string name="calc_n">N. cál.</string>
+    <string name="set">Ok</string>
+    <string name="score">Puntuación:</string>
+    <string name="end">Final</string>
 </resources>

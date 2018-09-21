@@ -8,4 +8,8 @@
     <string name="level_1">1en maila</string>
     <string name="level_2">2en maila</string>
     <string name="level_3">3en maila</string>
+    <string name="calc_n">Kalk. Zbk.</string>
+    <string name="set">Ezarri</string>
+    <string name="score">Score:</string>
+    <string name="end">The End</string>
 </resources>
