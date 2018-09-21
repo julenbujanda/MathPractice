@@ -21,19 +21,16 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
     //Graphical
-    private TextView lblQuestion;
-    private TextView lblRemainingCalcs;
-    private TextView lblScore;
-    private TextView lblIsCorrect;
-    private EditText txtResult;
-    private Button btnCalculate;
+    private TextView lblQuestion, lblRemainingCalcs, lblScore, lblIsCorrect;
+    private EditText txtResult, txtCalculations;
+    private Button btnCalculate, btnSetCalcs;
 
-    private int level;
-    private int remainingCalculations;
-    private int score;
+    private int level, remainingCalculations, score;
     private Operacion operation;
 
-
+    /**
+     * Crea una nueva operación
+     */
     private void nuevaOperacion() {
         txtResult.setText("");
         operation = new Operacion(level);
@@ -48,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Cierra el teclado de la aplicación
+     */
     private void cerrarTeclado() {
         ((InputMethodManager) Objects.requireNonNull(getSystemService(Context.INPUT_METHOD_SERVICE))).hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
     }
@@ -56,18 +56,29 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Conexión con la vista
         lblIsCorrect = findViewById(R.id.lbl_isCorrect);
         txtResult = findViewById(R.id.txt_result);
         btnCalculate = findViewById(R.id.btn_calculate);
-        btnCalculate.setEnabled(false);
         lblQuestion = findViewById(R.id.lbl_question);
         Spinner levelSpinner = findViewById(R.id.levels_spinner);
+        txtCalculations = findViewById(R.id.txt_calculations);
+        btnSetCalcs = findViewById(R.id.btn_set_calcs);
+        lblScore = findViewById(R.id.lbl_score);
+        lblRemainingCalcs = findViewById(R.id.lblRemainingNumber);
+
+        //Popular levelSpinner
         ArrayAdapter<CharSequence> levelsAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.levels_array, android.R.layout.simple_spinner_item);
         levelsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         levelSpinner.setAdapter(levelsAdapter);
+        //Acciones del levelSpinner
         levelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                if (pos + 1 != level) {
+                    score = 0;
+                }
                 switch (pos) {
                     case 0:
                         level = 1;
@@ -91,10 +102,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final EditText txtCalculations = findViewById(R.id.txt_calculations);
-        final Button btnSetCalcs = findViewById(R.id.btn_set_calcs);
-        lblScore = findViewById(R.id.lbl_score);
-        lblRemainingCalcs = findViewById(R.id.lblRemainingNumber);
+        //Desactivar o activar botones según el estado
         btnSetCalcs.setEnabled(false);
         txtCalculations.addTextChangedListener(new TextWatcher() {
             @Override
@@ -116,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        btnCalculate.setEnabled(false);
         txtResult.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -136,6 +145,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //Aplicar número deoperaciones
         btnSetCalcs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -146,9 +157,11 @@ public class MainActivity extends AppCompatActivity {
                 if (!txtResult.getText().toString().equals("") && remainingCalculations > 0) {
                     btnCalculate.setEnabled(true);
                 }
+                score = 0;
             }
         });
 
+        //Calcular resultado
         btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -170,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Nivel y número de operaciones por defecto
         level = 1;
         remainingCalculations = 5;
         score = 0;
@@ -178,11 +192,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Finaliza el juego actual
+     */
     private void endGame() {
         lblIsCorrect.setText(R.string.end);
         btnCalculate.setEnabled(false);
     }
 
+    /**
+     * Actualiza los TextView con las variables actuales
+     */
     private void updateData() {
         lblRemainingCalcs.setText(Integer.toString(remainingCalculations));
         lblScore.setText(Integer.toString(score));
