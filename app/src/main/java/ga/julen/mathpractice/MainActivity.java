@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView lblQuestion, lblRemainingCalcs, lblScore, lblIsCorrect;
     private EditText txtResult, txtCalculations;
     private Button btnCalculate, btnSetCalcs;
+    private Spinner levelSpinner;
 
     private int level, remainingCalculations, score;
     private Operacion operation;
@@ -35,12 +36,12 @@ public class MainActivity extends AppCompatActivity {
         txtResult.setText("");
         operation = new Operacion(level);
         if (level != 3) {
-            lblQuestion.setText(operation.getNum1() + " + " + operation.getNum2() + " =");
+            lblQuestion.setText(getString(R.string.operation, operation.getNum1(), "+", operation.getNum2()));
         } else {
             while (operation.getResult() < 0) {
                 operation = new Operacion(level);
             }
-            lblQuestion.setText(operation.getNum1() + " - " + operation.getNum2() + " =");
+            lblQuestion.setText(getString(R.string.operation, operation.getNum1(), "-", operation.getNum2()));
         }
 
     }
@@ -49,7 +50,23 @@ public class MainActivity extends AppCompatActivity {
      * Cierra el teclado de la aplicación
      */
     private void cerrarTeclado() {
-        ((InputMethodManager) Objects.requireNonNull(getSystemService(Context.INPUT_METHOD_SERVICE))).hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        ((InputMethodManager) Objects.requireNonNull(getSystemService(Context.INPUT_METHOD_SERVICE)))
+                .hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+    }
+
+    /**
+     * Carga las vistas
+     */
+    private void loadViews() {
+        lblIsCorrect = findViewById(R.id.lbl_isCorrect);
+        txtResult = findViewById(R.id.txt_result);
+        btnCalculate = findViewById(R.id.btn_calculate);
+        lblQuestion = findViewById(R.id.lbl_question);
+        levelSpinner = findViewById(R.id.levels_spinner);
+        txtCalculations = findViewById(R.id.txt_calculations);
+        btnSetCalcs = findViewById(R.id.btn_set_calcs);
+        lblScore = findViewById(R.id.lbl_score);
+        lblRemainingCalcs = findViewById(R.id.lblRemainingNumber);
     }
 
     @Override
@@ -58,18 +75,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Conexión con la vista
-        lblIsCorrect = findViewById(R.id.lbl_isCorrect);
-        txtResult = findViewById(R.id.txt_result);
-        btnCalculate = findViewById(R.id.btn_calculate);
-        lblQuestion = findViewById(R.id.lbl_question);
-        Spinner levelSpinner = findViewById(R.id.levels_spinner);
-        txtCalculations = findViewById(R.id.txt_calculations);
-        btnSetCalcs = findViewById(R.id.btn_set_calcs);
-        lblScore = findViewById(R.id.lbl_score);
-        lblRemainingCalcs = findViewById(R.id.lblRemainingNumber);
+        loadViews();
 
         //Popular levelSpinner
-        ArrayAdapter<CharSequence> levelsAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.levels_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> levelsAdapter = ArrayAdapter.createFromResource(
+                getApplicationContext(), R.array.levels_array, android.R.layout.simple_spinner_item);
         levelsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         levelSpinner.setAdapter(levelsAdapter);
         //Acciones del levelSpinner
@@ -152,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 remainingCalculations = Integer.parseInt(txtCalculations.getText().toString());
                 txtCalculations.setText("");
-                lblRemainingCalcs.setText(Integer.toString(remainingCalculations));
+                lblRemainingCalcs.setText(String.valueOf(remainingCalculations));
                 cerrarTeclado();
                 if (!txtResult.getText().toString().equals("") && remainingCalculations > 0) {
                     btnCalculate.setEnabled(true);
@@ -172,7 +182,8 @@ public class MainActivity extends AppCompatActivity {
                     remainingCalculations--;
                     score++;
                     updateData();
-                    FancyToast.makeText(getApplicationContext(), "Correcto!", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, true).show();
+                    FancyToast.makeText(getApplicationContext(), "Correcto!",
+                            FancyToast.LENGTH_LONG, FancyToast.SUCCESS, true).show();
                     nuevaOperacion();
                 } else {
                     lblIsCorrect.setText(R.string.incorrect);
@@ -204,8 +215,8 @@ public class MainActivity extends AppCompatActivity {
      * Actualiza los TextView con las variables actuales
      */
     private void updateData() {
-        lblRemainingCalcs.setText(Integer.toString(remainingCalculations));
-        lblScore.setText(Integer.toString(score));
+        lblRemainingCalcs.setText(String.valueOf(remainingCalculations));
+        lblScore.setText(String.valueOf(score));
     }
 
 }
